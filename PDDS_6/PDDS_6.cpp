@@ -23,14 +23,14 @@ auto GetConsoleCursorPosition()
 	return cbsi.dwCursorPosition;
 }
 
-auto BenchmarkSet2()
+auto BenchmarkSet2(int n, int mn, int mx)
 {
 	vector<int64_t> t(10);
 
-	auto s1 = create(10, 10, 60);
-	auto s2 = create(10, 10, 60);
+	auto s1 = create(n, mn, mx);
+	auto s2 = create(n, mn, mx);
 
-	BENCHMARK(t[0], create(10, 10, 60));
+	BENCHMARK(t[0], create(n, mn, mx));
 	BENCHMARK(t[1], size(s1));
 	BENCHMARK(t[2], subset(s1, s1));
 	BENCHMARK(t[3], subset(s2, s1));
@@ -44,14 +44,14 @@ auto BenchmarkSet2()
 	return t;
 }
 
-auto BenchmarkSet3()
+auto BenchmarkSet3(int n, int mn, int mx)
 {
 	vector<int64_t> t(10);
 
-	Set_3::Set s1(10, 10, 60);
-	Set_3::Set s2(10, 10, 60);
+	Set_3::Set s1(n, mn, mx);
+	Set_3::Set s2(n, mn, mx);
 
-	BENCHMARK(t[0], Set_3::Set(10, 10, 60));
+	BENCHMARK(t[0], Set_3::Set(n, mn, mx));
 	BENCHMARK(t[1], s1.size());
 	BENCHMARK(t[2], s1.subset(s1));
 	BENCHMARK(t[3], s2.subset(s1));
@@ -65,14 +65,14 @@ auto BenchmarkSet3()
 	return t;
 }
 
-auto BenchmarkSet4()
+auto BenchmarkSet4(int n, int mn, int mx)
 {
 	vector<int64_t> t(10);
 
-	Set_4::Set s1(10, 10, 60);
-	Set_4::Set s2(10, 10, 60);
+	Set_4::Set s1(n, mn, mx);
+	Set_4::Set s2(n, mn, mx);
 
-	BENCHMARK(t[0], Set_4::Set(10, 10, 60));
+	BENCHMARK(t[0], Set_4::Set(n, mn, mx));
 	BENCHMARK(t[1], s1.size());
 	BENCHMARK(t[2], s1.subset(s1));
 	BENCHMARK(t[3], s2.subset(s1));
@@ -86,14 +86,14 @@ auto BenchmarkSet4()
 	return t;
 }
 
-auto BenchmarkSet5()
+auto BenchmarkSet5(int n, int mn, int mx)
 {
 	vector<int64_t> t(10);
 
-	Set_5::Set s1(10, 10, 60);
-	Set_5::Set s2(10, 10, 60);
+	Set_5::Set s1(n, mn, mx);
+	Set_5::Set s2(n, mn, mx);
 
-	BENCHMARK(t[0], Set_5::Set(10, 10, 60));
+	BENCHMARK(t[0], Set_5::Set(n, mn, mx));
 	BENCHMARK(t[1], s1.size());
 	BENCHMARK(t[2], s1.subset(s1));
 	BENCHMARK(t[3], s2.subset(s1));
@@ -109,11 +109,13 @@ auto BenchmarkSet5()
 
 int main()
 {
+	constexpr auto n = 1000;
+
 	vector<vector<int64_t>> ts = {
-		BenchmarkSet2(),
-		BenchmarkSet3(),
-		BenchmarkSet4(),
-		BenchmarkSet5()
+		BenchmarkSet2(n, 0, n),
+		BenchmarkSet3(n, 0, n),
+		BenchmarkSet4(n, 0, n),
+		BenchmarkSet5(n, 0, n)
 	};
 
 	vector<string> names {
@@ -133,7 +135,7 @@ int main()
 		"list(func)",
 		"list(class)",
 		"list(std)",
-		"std(std)"
+		"set(std)"
 	};
 
 	cout << "+----------+------------+-------------+-----------+----------+-------------+-------------+" << endl;
