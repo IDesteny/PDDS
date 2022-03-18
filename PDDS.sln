@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PDDS_3", "PDDS_3\PDDS_3.vcxproj", "{6B565E16-1EB0-497D-9138-799977F81DA6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PDDS_4", "PDDS_4\PDDS_4.vcxproj", "{469C1B82-9D0E-4895-8DE7-877248DDD248}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PDDS_5", "PDDS_5\PDDS_5.vcxproj", "{789DAABA-219E-4951-97B0-771E3F4C80BF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PDDS_6", "PDDS_6\PDDS_6.vcxproj", "{6F066FEE-8915-46A6-8704-B337863A8B4A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PDDS_2", "PDDS_2\PDDS_2.vcxproj", "{5DD47D57-1900-4B96-9C26-4B01444D22B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B565E16-1EB0-497D-9138-799977F81DA6}.Debug|x64.ActiveCfg = Debug|x64
+		{6B565E16-1EB0-497D-9138-799977F81DA6}.Debug|x86.ActiveCfg = Debug|Win32
+		{6B565E16-1EB0-497D-9138-799977F81DA6}.Debug|x86.Build.0 = Debug|Win32
+		{6B565E16-1EB0-497D-9138-799977F81DA6}.Release|x64.ActiveCfg = Release|x64
+		{6B565E16-1EB0-497D-9138-799977F81DA6}.Release|x64.Build.0 = Release|x64
+		{6B565E16-1EB0-497D-9138-799977F81DA6}.Release|x86.ActiveCfg = Release|Win32
+		{6B565E16-1EB0-497D-9138-799977F81DA6}.Release|x86.Build.0 = Release|Win32
+		{469C1B82-9D0E-4895-8DE7-877248DDD248}.Debug|x64.ActiveCfg = Debug|x64
+		{469C1B82-9D0E-4895-8DE7-877248DDD248}.Debug|x86.ActiveCfg = Debug|Win32
+		{469C1B82-9D0E-4895-8DE7-877248DDD248}.Debug|x86.Build.0 = Debug|Win32
+		{469C1B82-9D0E-4895-8DE7-877248DDD248}.Release|x64.ActiveCfg = Release|x64
+		{469C1B82-9D0E-4895-8DE7-877248DDD248}.Release|x64.Build.0 = Release|x64
+		{469C1B82-9D0E-4895-8DE7-877248DDD248}.Release|x86.ActiveCfg = Release|Win32
+		{469C1B82-9D0E-4895-8DE7-877248DDD248}.Release|x86.Build.0 = Release|Win32
+		{789DAABA-219E-4951-97B0-771E3F4C80BF}.Debug|x64.ActiveCfg = Debug|x64
+		{789DAABA-219E-4951-97B0-771E3F4C80BF}.Debug|x86.ActiveCfg = Debug|Win32
+		{789DAABA-219E-4951-97B0-771E3F4C80BF}.Debug|x86.Build.0 = Debug|Win32
+		{789DAABA-219E-4951-97B0-771E3F4C80BF}.Release|x64.ActiveCfg = Release|x64
+		{789DAABA-219E-4951-97B0-771E3F4C80BF}.Release|x64.Build.0 = Release|x64
+		{789DAABA-219E-4951-97B0-771E3F4C80BF}.Release|x86.ActiveCfg = Release|Win32
+		{789DAABA-219E-4951-97B0-771E3F4C80BF}.Release|x86.Build.0 = Release|Win32
+		{6F066FEE-8915-46A6-8704-B337863A8B4A}.Debug|x64.ActiveCfg = Debug|x64
+		{6F066FEE-8915-46A6-8704-B337863A8B4A}.Debug|x64.Build.0 = Debug|x64
+		{6F066FEE-8915-46A6-8704-B337863A8B4A}.Debug|x86.ActiveCfg = Debug|Win32
+		{6F066FEE-8915-46A6-8704-B337863A8B4A}.Debug|x86.Build.0 = Debug|Win32
+		{6F066FEE-8915-46A6-8704-B337863A8B4A}.Release|x64.ActiveCfg = Release|x64
+		{6F066FEE-8915-46A6-8704-B337863A8B4A}.Release|x64.Build.0 = Release|x64
+		{6F066FEE-8915-46A6-8704-B337863A8B4A}.Release|x86.ActiveCfg = Release|Win32
+		{6F066FEE-8915-46A6-8704-B337863A8B4A}.Release|x86.Build.0 = Release|Win32
+		{5DD47D57-1900-4B96-9C26-4B01444D22B8}.Debug|x64.ActiveCfg = Debug|x64
+		{5DD47D57-1900-4B96-9C26-4B01444D22B8}.Debug|x86.ActiveCfg = Debug|Win32
+		{5DD47D57-1900-4B96-9C26-4B01444D22B8}.Debug|x86.Build.0 = Debug|Win32
+		{5DD47D57-1900-4B96-9C26-4B01444D22B8}.Release|x64.ActiveCfg = Release|x64
+		{5DD47D57-1900-4B96-9C26-4B01444D22B8}.Release|x64.Build.0 = Release|x64
+		{5DD47D57-1900-4B96-9C26-4B01444D22B8}.Release|x86.ActiveCfg = Release|Win32
+		{5DD47D57-1900-4B96-9C26-4B01444D22B8}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B3A846A2-7F71-47D4-BD66-236CD467DC09}
+	EndGlobalSection
+EndGlobal

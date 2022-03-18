@@ -1,0 +1,175 @@
+﻿#include <iostream>
+#include <vector>
+#include <windows.h>
+#include "../PDDS_2/Set_2.hpp"
+#include "../PDDS_3/Set_3.hpp"
+#include "../PDDS_4/Set_4.hpp"
+#include "../PDDS_5/Set_5.hpp"
+#include "Benchmark.hpp"
+
+#pragma warning(disable: 26444)
+
+using namespace std;
+
+auto SetPos(short x, short y)
+{
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { x, y });
+}
+
+auto GetConsoleCursorPosition()
+{
+	CONSOLE_SCREEN_BUFFER_INFO cbsi;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cbsi);
+	return cbsi.dwCursorPosition;
+}
+
+auto BenchmarkSet2()
+{
+	vector<int64_t> t(10);
+
+	auto s1 = create(10, 10, 60);
+	auto s2 = create(10, 10, 60);
+
+	BENCHMARK(t[0], create(10, 10, 60));
+	BENCHMARK(t[1], size(s1));
+	BENCHMARK(t[2], subset(s1, s1));
+	BENCHMARK(t[3], subset(s2, s1));
+	BENCHMARK(t[4], quality(s1, s1));
+	BENCHMARK(t[5], quality(s2, s1));
+	BENCHMARK(t[6], union_set(s1, s2));
+	BENCHMARK(t[7], intersection_set(s1, s2));
+	BENCHMARK(t[8], difference_set(s1, s2));
+	BENCHMARK(t[9], symmetric_difference_set(s1, s2));
+
+	return t;
+}
+
+auto BenchmarkSet3()
+{
+	vector<int64_t> t(10);
+
+	Set_3::Set s1(10, 10, 60);
+	Set_3::Set s2(10, 10, 60);
+
+	BENCHMARK(t[0], Set_3::Set(10, 10, 60));
+	BENCHMARK(t[1], s1.size());
+	BENCHMARK(t[2], s1.subset(s1));
+	BENCHMARK(t[3], s2.subset(s1));
+	BENCHMARK(t[4], s1.quality(s1));
+	BENCHMARK(t[5], s2.quality(s1));
+	BENCHMARK(t[6], s1.union_set(s2));
+	BENCHMARK(t[7], s1.intersection_set(s2));
+	BENCHMARK(t[8], s1.difference_set(s2));
+	BENCHMARK(t[9], s1.symmetric_difference_set(s2));
+
+	return t;
+}
+
+auto BenchmarkSet4()
+{
+	vector<int64_t> t(10);
+
+	Set_4::Set s1(10, 10, 60);
+	Set_4::Set s2(10, 10, 60);
+
+	BENCHMARK(t[0], Set_4::Set(10, 10, 60));
+	BENCHMARK(t[1], s1.size());
+	BENCHMARK(t[2], s1.subset(s1));
+	BENCHMARK(t[3], s2.subset(s1));
+	BENCHMARK(t[4], s1.quality(s1));
+	BENCHMARK(t[5], s2.quality(s1));
+	BENCHMARK(t[6], s1.union_set(s2));
+	BENCHMARK(t[7], s1.intersection_set(s2));
+	BENCHMARK(t[8], s1.difference_set(s2));
+	BENCHMARK(t[9], s1.symmetric_difference_set(s2));
+
+	return t;
+}
+
+auto BenchmarkSet5()
+{
+	vector<int64_t> t(10);
+
+	Set_5::Set s1(10, 10, 60);
+	Set_5::Set s2(10, 10, 60);
+
+	BENCHMARK(t[0], Set_5::Set(10, 10, 60));
+	BENCHMARK(t[1], s1.size());
+	BENCHMARK(t[2], s1.subset(s1));
+	BENCHMARK(t[3], s2.subset(s1));
+	BENCHMARK(t[4], s1.quality(s1));
+	BENCHMARK(t[5], s2.quality(s1));
+	BENCHMARK(t[6], s1.union_set(s2));
+	BENCHMARK(t[7], s1.intersection_set(s2));
+	BENCHMARK(t[8], s1.difference_set(s2));
+	BENCHMARK(t[9], s1.symmetric_difference_set(s2));
+
+	return t;
+}
+
+int main()
+{
+	vector<vector<int64_t>> ts = {
+		BenchmarkSet2(),
+		BenchmarkSet3(),
+		BenchmarkSet4(),
+		BenchmarkSet5()
+	};
+
+	vector<string> names {
+		"create",
+		"size",
+		"subset",
+		"subset",
+		"quality",
+		"quality",
+		"union",
+		"inter",
+		"diff",
+		"symdiff"
+	};
+
+	vector<string> libnames = {
+		"list(func)",
+		"list(class)",
+		"list(std)",
+		"std(std)"
+	};
+
+	cout << "+----------+------------+-------------+-----------+----------+-------------+-------------+" << endl;
+	cout << "|   name   | list(func) | list(class) | list(std) | set(std) |   fastest   |   slowest   |" << endl;
+	cout << "+----------+------------+-------------+-----------+----------+-------------+-------------+" << endl;
+
+	auto pos = GetConsoleCursorPosition();
+
+	for (int i = 0; i < 10; ++i)
+	{
+		auto fastest = {
+			ts[0][i],
+			ts[1][i],
+			ts[2][i],
+			ts[3][i]
+		};
+
+		auto max = max_element(fastest.begin(), fastest.end()) - fastest.begin();
+		auto min = min_element(fastest.begin(), fastest.end()) - fastest.begin();
+
+		cout << "| " << names[i];
+		SetPos(11, pos.Y + i);
+		cout << "| " << ts[0][i];
+		SetPos(24, pos.Y + i);
+		cout << "| " << ts[1][i];
+		SetPos(38, pos.Y + i);
+		cout << "| " << ts[2][i];
+		SetPos(50, pos.Y + i);
+		cout << "| " << ts[3][i];
+		SetPos(61, pos.Y + i);
+		cout << "| " << libnames[min];
+		SetPos(75, pos.Y + i);
+		cout << "| " << libnames[max];
+		SetPos(89, pos.Y + i);
+		cout << "|\n";
+	}
+
+	cout << "+----------+------------+-------------+-----------+----------+-------------+-------------+" << endl;
+}
