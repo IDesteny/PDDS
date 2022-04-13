@@ -2,7 +2,7 @@
 
 String::String() = default;
 
-String::String(std::string s) : s(s) {}
+String::String(std::basic_string<int> s) : s(s) {}
 
 String::String(int n, int min, int max)
 {
@@ -10,7 +10,7 @@ String::String(int n, int min, int max)
 
 	for (auto i = 0; i < n; ++i)
 	{
-		char ch;
+		int ch;
 		while (own(ch = min + min + rand() % (max - min)));
 		s += ch;
 	}

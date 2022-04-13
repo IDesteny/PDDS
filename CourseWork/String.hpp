@@ -3,11 +3,11 @@
 
 class String
 {
-	std::string s;
+	std::basic_string<int> s;
 
 public:
 	String();
-	String(std::string s);
+	String(std::basic_string<int> s);
 	String(int n, int min, int max);
 	bool own(char ch);
 	int size();
