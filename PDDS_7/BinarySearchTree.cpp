@@ -27,7 +27,7 @@ void BinarySearchTree::_BypassTD(const auto t, auto &s) const noexcept
 {
 	if (!t->_Isnil)
 	{
-		s.append(std::to_string(t->_Myval));
+		s += std::to_string(t->_Myval);
 		_BypassTD(t->_Left, s);
 		_BypassTD(t->_Right, s);
 	}
@@ -39,14 +39,14 @@ void BinarySearchTree::_BypassDT(const auto t, auto &s) const noexcept
 	{
 		_BypassDT(t->_Left, s);
 		_BypassDT(t->_Right, s);
-		s.append(std::to_string(t->_Myval));
+		s += std::to_string(t->_Myval);
 	}
 }
 
 auto BinarySearchTree::_GetRoot() const noexcept -> const _Nodeptr
 {
 	auto t = st.begin()._Ptr, t2 = t;
-
+	
 	do t = t2;
 	while (!(t2 = t2->_Parent)->_Isnil);
 
@@ -70,6 +70,6 @@ std::string BinarySearchTree::BypassTD() const noexcept
 std::string BinarySearchTree::BypassLR() const noexcept
 {
 	std::string s;
-	std::for_each(st.begin(), st.end(), [&s](const auto v) { s.append(std::to_string(v)); });
+	std::for_each(st.begin(), st.end(), [&](const auto v) { s += std::to_string(v); });
 	return s;
 }
