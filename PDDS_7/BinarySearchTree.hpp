@@ -6,7 +6,7 @@
 class BinarySearchTree
 {
 	std::set<int> st;
-	using _Nodeptr = std::set<int>::const_iterator::_Nodeptr;
+	using _Nodeptr = std::set<int>::iterator::_Nodeptr;
 
 	void _BypassTD(const auto t, auto &s) const noexcept;
 	void _BypassDT(const auto t, auto &s) const noexcept;
