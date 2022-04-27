@@ -1,6 +1,7 @@
 #include "BinarySearchTree.hpp"
 
 BinarySearchTree::BinarySearchTree() = default;
+
 BinarySearchTree::BinarySearchTree(const int n, const int mn, const int mx) noexcept
 {
 	for (auto i = 0; i < n; ++i)
@@ -22,7 +23,7 @@ void BinarySearchTree::Delete() noexcept
 	st.clear();
 }
 
-void BinarySearchTree::_BypassTD(const _Nodeptr t, std::string &s) const noexcept
+void BinarySearchTree::_BypassTD(const auto t, auto &s) const noexcept
 {
 	if (!t->_Isnil)
 	{
@@ -32,7 +33,7 @@ void BinarySearchTree::_BypassTD(const _Nodeptr t, std::string &s) const noexcep
 	}
 }
 
-void BinarySearchTree::_BypassDT(const _Nodeptr t, std::string &s) const noexcept
+void BinarySearchTree::_BypassDT(const auto t, auto &s) const noexcept
 {
 	if (!t->_Isnil)
 	{
@@ -42,18 +43,13 @@ void BinarySearchTree::_BypassDT(const _Nodeptr t, std::string &s) const noexcep
 	}
 }
 
-const BinarySearchTree::_Nodeptr BinarySearchTree::_GetRoot() const noexcept
+auto BinarySearchTree::_GetRoot() const noexcept -> const _Nodeptr
 {
-	_Nodeptr t = st.begin()._Ptr;
-	_Nodeptr t2 = t;
+	auto t = st.begin()._Ptr, t2 = t;
 
-	for (;;)
-	{
-		t = t2;
-		t2 = t2->_Parent;
-		if (t2->_Isnil)
-			break;
-	}
+	do t = t2;
+	while (!(t2 = t2->_Parent)->_Isnil);
+
 	return t;
 }
 
@@ -74,6 +70,6 @@ std::string BinarySearchTree::BypassTD() const noexcept
 std::string BinarySearchTree::BypassLR() const noexcept
 {
 	std::string s;
-	std::for_each(st.begin(), st.end(), [&s](const int &v) { s.append(std::to_string(v)); });
+	std::for_each(st.begin(), st.end(), [&s](const auto v) { s.append(std::to_string(v)); });
 	return s;
 }
