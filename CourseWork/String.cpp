@@ -2,74 +2,59 @@
 
 String::String() = default;
 
-String::String(std::basic_string<int> s) : s(s) {}
-
-String::String(int n, int min, int max)
+String::String(const int n, const int mn, const int mx) noexcept
 {
-	s.reserve(n);
-
 	for (auto i = 0; i < n; ++i)
-	{
-		int ch;
-		while (own(ch = min + min + rand() % (max - min)));
-		s += ch;
-	}
+		while (!_add(mn + mn + rand() % (mx - mn)));
 }
 
-bool String::own(char ch)
+bool String::_add(const auto v) noexcept
 {
-	return s.find(ch) != std::string::npos;
+	return !own(v) ? reinterpret_cast<bool *>(&(s += v)) : false;
 }
 
-int String::size()
+bool String::own(const int v) const noexcept
+{
+	return s.find(v) != std::string::npos;
+}
+
+int String::size() const noexcept
 {
 	return s.size();
 }
 
-bool String::subset(const String & _s) const
+bool String::subset(const String &_s) const noexcept
 {
 	return _s.s.find(s);
 }
 
-bool String::quality(const String & _s)
+bool String::quality(const String &_s) const noexcept
 {
 	return _s.subset(*this) && subset(_s);
 }
 
-String String::union_set(const String & _s)
+String String::union_set(const String &_s) const noexcept
 {
-	String new_string(s);
-
-	for (auto &&iter : _s.s)
-		if (own(iter))
-			new_string.s += iter;
-
+	String new_string(_s);
+	std::for_each(_s.s.begin(), _s.s.end(), [&](const auto v) { new_string._add(v); });
 	return new_string;
 }
 
-String String::intersection_set(const String & _s)
+String String::intersection_set(const String &_s) const noexcept
 {
 	String new_string;
-
-	for (auto &&iter : _s.s)
-		if (own(iter))
-			new_string.s += iter;
-
+	std::for_each(_s.s.begin(), _s.s.end(), [&](const auto v) { new_string._add(v); });
 	return new_string;
 }
 
-String String::difference_set(const String & _s)
+String String::difference_set(const String &_s) const noexcept
 {
 	String new_string;
-
-	for (auto &&iter : _s.s)
-		if (!own(iter))
-			new_string.s += iter;
-
+	std::for_each(_s.s.begin(), _s.s.end(), [&](const auto v) { if (!own(v)) new_string._add(v); });
 	return new_string;
 }
 
-String String::symmetric_difference_set(const String & _s)
+String String::symmetric_difference_set(const String &_s) const noexcept
 {
 	return intersection_set(_s).difference_set(union_set(_s));
 }

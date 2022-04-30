@@ -1,20 +1,23 @@
 #pragma once
 #include <string>
+#include <algorithm>
 
 class String
 {
 	std::basic_string<int> s;
 
 public:
-	String();
-	String(std::basic_string<int> s);
-	String(int n, int min, int max);
-	bool own(char ch);
-	int size();
-	bool subset(const String &_s) const;
-	bool quality(const String &_s);
-	String union_set(const String &_s);
-	String intersection_set(const String &_s);
-	String difference_set(const String &_s);
-	String symmetric_difference_set(const String &_s);
+	explicit String();
+	explicit String(const int n, const int min, const int max) noexcept;
+	bool own(const int v) const noexcept;
+	int size() const noexcept;
+	bool subset(const String &_s) const noexcept;
+	bool quality(const String &_s) const noexcept;
+	String union_set(const String &_s) const noexcept;
+	String intersection_set(const String &_s) const noexcept;
+	String difference_set(const String &_s) const noexcept;
+	String symmetric_difference_set(const String &_s) const noexcept;
+
+private:
+	bool _add(const auto v) noexcept;
 };
