@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <ranges>
 #include <algorithm>
 
 class String
@@ -19,5 +20,5 @@ public:
 	String symmetric_difference_set(const String &_s) const noexcept;
 
 private:
-	bool _add(const auto v) noexcept;
+	bool _add(auto &&v) noexcept;
 };

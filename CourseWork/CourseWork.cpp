@@ -127,11 +127,35 @@ auto BenchmarkString(int n, int mn, int mx)
 	return t;
 }
 
+auto is_numeric(const std::string &str)
+{
+	for (auto &&it : str)
+		if (it < 48 || it > 57)
+			throw std::bad_cast();
+
+	return stoull(str);
+}
+
 int main()
 {
 	using namespace std;
 
-	constexpr auto n = 10;
+	system("color F0");
+
+	string str;
+	cin >> str;
+
+	uint64_t n;
+
+	try
+	{
+		n = is_numeric(str);
+	}
+	catch (...)
+	{
+		cerr << "Invalid value: " << str << endl;
+		return -1;
+	}
 
 	vector<vector<int64_t>> ts = {
 		BenchmarkSet2(n, 0, n),

@@ -4,13 +4,13 @@ String::String() = default;
 
 String::String(const int n, const int mn, const int mx) noexcept
 {
-	for (auto i = 0; i < n; ++i)
+	for (auto &&i : std::ranges::views::iota(0, n))
 		while (!_add(mn + mn + rand() % (mx - mn)));
 }
 
-bool String::_add(const auto v) noexcept
+bool String::_add(auto &&v) noexcept
 {
-	return !own(v) ? reinterpret_cast<bool *>(&(s += v)) : false;
+	return own(v) || reinterpret_cast<bool *>(&(s += v));
 }
 
 bool String::own(const int v) const noexcept
@@ -35,23 +35,23 @@ bool String::quality(const String &_s) const noexcept
 
 String String::union_set(const String &_s) const noexcept
 {
-	String new_string(_s);
-	std::for_each(_s.s.begin(), _s.s.end(), [&](const auto v) { new_string._add(v); });
-	return new_string;
+	auto ns(_s);
+	std::ranges::for_each(_s.s, [&](auto &&v) { ns._add(v); });
+	return ns;
 }
 
 String String::intersection_set(const String &_s) const noexcept
 {
-	String new_string;
-	std::for_each(_s.s.begin(), _s.s.end(), [&](const auto v) { new_string._add(v); });
-	return new_string;
+	String ns;
+	std::ranges::for_each(_s.s, [&](auto &&v) { ns._add(v); });
+	return ns;
 }
 
 String String::difference_set(const String &_s) const noexcept
 {
-	String new_string;
-	std::for_each(_s.s.begin(), _s.s.end(), [&](const auto v) { if (!own(v)) new_string._add(v); });
-	return new_string;
+	auto ns(_s);
+	std::ranges::for_each(_s.s, [&](auto &&v) { !own(v) && ns._add(v); });
+	return ns;
 }
 
 String String::symmetric_difference_set(const String &_s) const noexcept
