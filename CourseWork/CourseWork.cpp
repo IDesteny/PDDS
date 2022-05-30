@@ -140,8 +140,6 @@ int main()
 {
 	using namespace std;
 
-	system("color F0");
-
 	string str;
 	cin >> str;
 
@@ -192,7 +190,7 @@ int main()
 
 	auto pos = GetConsoleCursorPosition();
 
-	for (auto i = 0; i < 10; ++i)
+	for (auto &&i : std::ranges::views::iota(0, 10))
 	{
 		auto fastest = {
 			ts[0][i],

@@ -10,7 +10,7 @@ String::String(const int n, const int mn, const int mx) noexcept
 
 bool String::_add(auto &&v) noexcept
 {
-	return own(v) || reinterpret_cast<bool *>(&(s += v));
+	return own(v) || (s += v, true);
 }
 
 bool String::own(const int v) const noexcept
